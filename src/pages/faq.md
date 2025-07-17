@@ -1,5 +1,9 @@
 # Häufige Fragen
 
+:::info
+Bitte beachten Sie, dass dies ein Arbeitsentwurf bzw. Ideenskizze ist. Zur Zeit wird diese Homepage als Konzept ausgearbeitet. Es gibt bislang keine Gesellschaft im rechtlichen Sinne. Alle die möchten sind aufgerufen, Verbesserungsvorschläge zu machen. Entweder als Wortbeitrag in den [Diskussionen](https://github.com/roessing/dorfentwicklung/discussions) oder als Pull-Request zum [Quellcode](https://github.com/roessing/dorfentwicklung) der Seite.
+:::
+
 Hier haben wir einige zu erwartende bzw. häufige Fragen zur Dorfentwicklungsgesellschaft (DEG) beantwortet.
 
 #### Wir haben doch schon den Kulturkreis und die Bürgerstiftung. Wozu noch eine Organisation?

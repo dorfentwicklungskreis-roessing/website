@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@import "@levino/shipyard-base/globals.css";
+@plugin "daisyui";
+@plugin "@tailwindcss/typography";
+@source "../../node_modules/@levino/shipyard-base";
+@source "../../node_modules/@levino/shipyard-docs";
+
+/* Helles Theme: warmes Grün/Erdtöne – passend zur Dorfentwicklung */
+@plugin "daisyui/theme" {
+  name: "light";
+  default: true;
+
+  --color-primary: oklch(52.00% 0.105 152.00);
+  --color-primary-content: oklch(98.00% 0.01 152.00);
+  --color-secondary: oklch(63.00% 0.095 75.00);
+  --color-secondary-content: oklch(99.00% 0.01 75.00);
+  --color-accent: oklch(68.00% 0.13 50.00);
+  --color-accent-content: oklch(99.00% 0.01 50.00);
+  --color-neutral: oklch(35.00% 0.02 152.00);
+  --color-neutral-content: oklch(97.00% 0.01 152.00);
+  --color-base-100: oklch(99.00% 0.006 95.00);
+  --color-base-200: oklch(96.00% 0.012 95.00);
+  --color-base-300: oklch(92.00% 0.016 95.00);
+  --color-base-content: oklch(28.00% 0.02 152.00);
+  --color-info: oklch(70.00% 0.07 230.00);
+  --color-info-content: oklch(98.00% 0.01 230.00);
+  --color-success: oklch(64.00% 0.13 150.00);
+  --color-success-content: oklch(98.00% 0.01 150.00);
+  --color-warning: oklch(80.00% 0.12 85.00);
+  --color-warning-content: oklch(30.00% 0.04 85.00);
+  --color-error: oklch(63.00% 0.18 25.00);
+  --color-error-content: oklch(98.00% 0.01 25.00);
+
+  --radius-box: 1rem;
+  --radius-field: 0.5rem;
+}
+
+/* Dunkles Theme: warme, dunkle Grün-/Erdtöne */
+@plugin "daisyui/theme" {
+  name: "dark";
+  prefersdark: true;
+
+  --color-primary: oklch(70.00% 0.12 152.00);
+  --color-primary-content: oklch(20.00% 0.03 152.00);
+  --color-secondary: oklch(74.00% 0.09 75.00);
+  --color-secondary-content: oklch(20.00% 0.03 75.00);
+  --color-accent: oklch(74.00% 0.12 50.00);
+  --color-accent-content: oklch(20.00% 0.03 50.00);
+  --color-neutral: oklch(40.00% 0.02 152.00);
+  --color-neutral-content: oklch(95.00% 0.01 152.00);
+  --color-base-100: oklch(24.00% 0.012 152.00);
+  --color-base-200: oklch(21.00% 0.012 152.00);
+  --color-base-300: oklch(18.00% 0.012 152.00);
+  --color-base-content: oklch(92.00% 0.012 95.00);
+  --color-info: oklch(74.00% 0.07 230.00);
+  --color-info-content: oklch(20.00% 0.02 230.00);
+  --color-success: oklch(72.00% 0.13 150.00);
+  --color-success-content: oklch(20.00% 0.03 150.00);
+  --color-warning: oklch(82.00% 0.12 85.00);
+  --color-warning-content: oklch(25.00% 0.04 85.00);
+  --color-error: oklch(70.00% 0.16 25.00);
+  --color-error-content: oklch(20.00% 0.03 25.00);
+
+  --radius-box: 1rem;
+  --radius-field: 0.5rem;
+}

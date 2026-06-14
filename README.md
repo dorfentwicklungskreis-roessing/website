@@ -1,41 +1,73 @@
-# Website
+# Dorfentwicklungsgesellschaft Rössing
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+Website der Dorfentwicklungsgesellschaft Rössing (DEG) – „Unser Dorf hat
+Zukunft".
 
-### Installation
+Gebaut mit [Astro](https://astro.build/), [Tailwind CSS](https://tailwindcss.com/),
+[DaisyUI](https://daisyui.com/) und dem hauseigenen Framework
+[shipyard](https://shipyard.levinkeller.de) (`@levino/shipyard-base` +
+`@levino/shipyard-docs`) – konsistent mit der Schwesterseite
+[roessing.de](https://xn--rssing-wxa.de).
 
-```
-$ yarn
-```
+## Entwicklung
 
-### Local Development
-
-```
-$ yarn start
-```
-
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
-
-```
-$ yarn build
+```bash
+npm install
+npm run dev      # Dev-Server unter http://127.0.0.1:4321
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+## Build
 
-### Deployment
-
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
+```bash
+npm run build    # erzeugt statische Ausgabe in ./dist
+npm run preview  # baut nicht, dient zur Vorschau von ./dist
 ```
 
-Not using SSH:
+Die Ausgabe in `./dist` ist vollständig statisch und kann von jedem statischen
+Hoster ausgeliefert werden.
 
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
+## Seitenstruktur
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+| Route                                    | Inhalt                                            |
+| ---------------------------------------- | ------------------------------------------------- |
+| `/`                                      | Landing-Page (Hero, Mission, 25-Jahre-DEG, Vision, News, CTA) |
+| `/docs/vision/...`                       | Vision (Digitaler Dorfschlüssel, Rede 25 Jahre DEG) |
+| `/neuigkeiten` & `/neuigkeiten/[id]`     | Neuigkeiten / Ideenwerkstatt                      |
+| `/faq`                                   | Häufige Fragen                                    |
+| `/changelog`                             | Verlauf                                           |
+| `/impressum`                             | Impressum                                         |
+
+Inhalte:
+
+- **Vision**: `src/content/docs/vision/` (shipyard-docs Collection)
+- **Neuigkeiten**: `src/content/news/` (Astro Content Collection)
+- **Prosa-Seiten**: `src/pages/*.mdx` (FAQ als interaktive `.astro`-Seite)
+- **Theme/Farben**: `src/styles/app.css` (DaisyUI Light/Dark, warme Grün-/Erdtöne)
+
+## Deployment
+
+Die Seite wird – analog zur Schwesterseite **roessing.de** – als **Cloudflare
+Worker mit Static Assets** über die **Cloudflare Workers Git-Integration**
+ausgeliefert (siehe `wrangler.toml`). Cloudflare baut bei jedem Push auf `main`
+automatisch und veröffentlicht die statische Ausgabe.
+
+**Build-Einstellungen in Cloudflare (Workers Builds):**
+
+- Build-Befehl: `npm run build`
+- Deploy-Befehl / Assets-Verzeichnis: `./dist` (aus `wrangler.toml`)
+- Umgebungsvariable `WORKERS_CI_BRANCH` wird von Cloudflare gesetzt und in
+  `astro.config.mjs` für die korrekte Canonical-/Sitemap-URL verwendet:
+  - Branch `main` → `https://dorfentwicklung.xn--rssing-wxa.de/`
+  - andere Branches → Preview-URL `*-dorfentwicklung.post-505.workers.dev`
+
+> Hinweis: Die ursprüngliche Docusaurus-Konfiguration nannte als Produktions-URL
+> `https://dorfentwicklung.xn--rssing-wxa.de` (= dorfentwicklung.rössing.de).
+> Diese URL bleibt erhalten. Es existierten im Repo keine GitHub-Workflows,
+> kein `CNAME` und keine `vercel.json`; das Deployment erfolgt über die
+> Cloudflare-Git-Integration (kein Schritt im Repo nötig). Sollte stattdessen
+> GitHub Pages gewünscht sein, genügt ein Workflow, der `npm run build` ausführt
+> und `./dist` veröffentlicht – plus ein `public/CNAME` mit der Domain.
+
+## Lizenz
+
+Inhalte © Dorfentwicklungsgesellschaft Rössing (in Gründung).

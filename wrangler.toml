@@ -1,0 +1,15 @@
+# Cloudflare Worker Konfiguration für dorfentwicklung.rössing.de
+# Deployment als Cloudflare Worker mit Static Assets (analog zu roessing.de)
+
+name = "dorfentwicklung"
+
+# Kompatibilitätsdatum
+compatibility_date = "2025-12-16"
+
+# Assets-Konfiguration für die statisch gebaute Astro-Seite
+[assets]
+directory = "./dist"
+
+# Preview-Deployments werden über die Cloudflare Workers Git-Integration
+# gesteuert. Die Build-Umgebungsvariable WORKERS_CI_BRANCH wird in
+# astro.config.mjs für die Site-URL (Canonical / Sitemap) verwendet.

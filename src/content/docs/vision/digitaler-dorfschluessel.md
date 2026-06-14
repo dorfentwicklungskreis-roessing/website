@@ -1,5 +1,11 @@
 ---
-sidebar_position: 2
+title: Ein Schlüssel fürs ganze Dorf
+description: >-
+  Eine gemeinsame digitale Anmeldung fürs ganze Dorf – als Fundament für
+  selbstgebaute, dorfeigene Werkzeuge.
+sidebar:
+  label: Digitaler Dorfschlüssel
+  position: 1
 ---
 
 # Ein Schlüssel fürs ganze Dorf
@@ -63,7 +69,7 @@ finanzierten Unternehmen.
   eine motivierte Person dasselbe in wenigen Abenden – machbar für
   Ehrenamtliche, Nachbar:innen, Jugendliche.
 
-:::tip Beweisstück aus Rössing
+:::tip[Beweisstück aus Rössing]
 
 Auf roessing.de pflegt schon heute ein KI-Assistent die Veranstaltungen – kurz
 beschreiben, fertig. Was dort im Kleinen läuft, lässt sich aufs ganze Dorf

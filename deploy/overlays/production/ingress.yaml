@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: website
+  namespace: dorfentwicklung
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+  # Öffentliche Seite — kein Zugriffsschutz. Ingress zeigt direkt auf nginx (8080).
+spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - dorfentwicklung.xn--rssing-wxa.de
+      secretName: dorfentwicklung-tls
+  rules:
+    - host: dorfentwicklung.xn--rssing-wxa.de
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: website
+                port:
+                  number: 8080

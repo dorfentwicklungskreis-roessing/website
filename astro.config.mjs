@@ -9,16 +9,12 @@ import shipyardDocs from '@levino/shipyard-docs'
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'astro/config'
 
-const branch = process.env.WORKERS_CI_BRANCH
-
 // localhost nur bei `astro dev`, sonst auf Produktion defaulten
 const isDevServer = process.argv.includes('dev')
 
 const site = isDevServer
   ? 'http://localhost:4321'
-  : branch && branch !== 'main'
-    ? `https://${branch.replace(/\//g, '-').toLowerCase()}-dorfentwicklung.post-505.workers.dev`
-    : 'https://dorfentwicklung.xn--rssing-wxa.de/'
+  : 'https://dorfentwicklung.xn--rssing-wxa.de/'
 
 // https://astro.build/config
 export default defineConfig({

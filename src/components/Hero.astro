@@ -1,0 +1,50 @@
+---
+interface Props {
+  eyebrow?: string
+  title: string
+  subtitle?: string
+}
+const { eyebrow, title, subtitle } = Astro.props
+---
+
+<section
+  class="relative isolate overflow-hidden rounded-3xl bg-gradient-to-br from-primary via-primary to-secondary text-primary-content shadow-xl"
+>
+  {/* Dezentes Muster im Hintergrund */}
+  <div
+    class="pointer-events-none absolute inset-0 -z-10 opacity-15"
+    style="background-image: radial-gradient(currentColor 1px, transparent 1px); background-size: 22px 22px;"
+  >
+  </div>
+  <div
+    class="pointer-events-none absolute -right-24 -top-24 -z-10 h-96 w-96 rounded-full bg-accent/30 blur-3xl"
+  >
+  </div>
+
+  <div class="px-6 py-20 sm:px-12 sm:py-28 lg:px-20">
+    <div class="max-w-3xl">
+      {
+        eyebrow && (
+          <span class="badge badge-lg border-0 bg-primary-content/15 font-medium text-primary-content backdrop-blur">
+            {eyebrow}
+          </span>
+        )
+      }
+      <h1
+        class="mt-5 text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl"
+      >
+        {title}
+      </h1>
+      {
+        subtitle && (
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-primary-content/85 sm:text-xl">
+            {subtitle}
+          </p>
+        )
+      }
+      <div class="mt-10 flex flex-wrap gap-4">
+        <slot name="actions" />
+      </div>
+    </div>
+  </div>
+</section>

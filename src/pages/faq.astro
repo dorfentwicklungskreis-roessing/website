@@ -1,0 +1,76 @@
+---
+import Layout from '@levino/shipyard-base/layouts/Page.astro'
+import Hero from '../components/Hero.astro'
+
+const metadata = {
+  title: 'Häufige Fragen',
+  description:
+    'Antworten auf häufige Fragen zur Dorfentwicklungsgesellschaft Rössing (DEG).',
+}
+
+const faqs = [
+  {
+    q: 'Wir haben doch schon den Kulturkreis und die Bürgerstiftung. Wozu noch eine Organisation?',
+    a: 'Das stimmt. Allerdings arbeiten weder der Kulturkreis noch die Bürgerstiftung mit einer (gewissen) Gewinnabsicht. Sie haben auch keinen nennenswerten wirtschaftlichen Betrieb, welcher die Bezahlung der Mitarbeitenden ermöglichen würde.',
+  },
+  {
+    q: 'Wieso kann man sich nicht mit weniger Eigenkapital beteiligen?',
+    a: 'Wir erwarten von den Anteilseigner:innen ein gewisses Engagement. Im Gegensatz zu anderen Organisationen und Vereinen sehen wir dieses vor allem durch einen finanziellen Beitrag nachgewiesen. Wir wollen auch, gerade am Beginn, den sprichwörtlichen Brei nicht mit zu vielen Köchen versalzen. Wenn sich die Gesellschaft bewährt hat, wird eine Öffnung für eine größere Gruppe von Anteilseigner:innen erwogen.',
+  },
+  {
+    q: 'Welche Grundsätze befolgt die DEG bei ihrer Arbeit?',
+    list: [
+      'Anpassung der Gebäude- und Wohnstruktur in Rössing an moderne Bedürfnisse (mehr ältere Menschen, weniger landwirtschaftliche Betriebe, mehr Single-Haushalte)',
+      'Verträglichkeit mit Natur und Umwelt sowie Vermeidung von unnötigen Emissionen und Anpassung an den Klimawandel',
+      'Die Erhaltung und Verbesserung des ästhetischen Gesamtbilds des Dorfes',
+      'Die Verbesserung der allgemeinen Lebensqualität im Dorf',
+    ],
+    a: 'Die Grundsätze der Arbeit sind noch in der Entwicklung. Wichtige Aspekte werden dabei sein:',
+    after:
+      'Die Grundsätze sollen unter anderem von den Ergebnissen der Ideenwerkstatt für ein „Leitbild" für Rössing, welche im März 2025 geplant ist, inspiriert sein.',
+  },
+  {
+    q: 'Setzt die DEG nur Projekte um, die der Ortsrat befürwortet?',
+    a: 'Die DEG ist eine private Organisation, getragen von engagierten Bürger:innen mit festen Grundsätzen. Sie soll explizit ein Gegengewicht zu den ständig wechselnden Mehrheiten in politischen Gremien bilden und kann deshalb auf aktuelle Launen in den Ortsräten keine Rücksicht nehmen.',
+  },
+]
+---
+
+<Layout {...metadata}>
+  <div class="space-y-12 py-10">
+    <Hero eyebrow="Gut zu wissen" title="Häufige Fragen" subtitle="Hier beantworten wir einige zu erwartende bzw. häufige Fragen zur Dorfentwicklungsgesellschaft (DEG)." />
+
+    <div role="alert" class="alert border border-info/30 bg-info/10 text-base-content">
+      <span class="text-2xl">💡</span>
+      <p class="text-sm text-base-content/70">
+        Bitte beachten Sie, dass dies ein Arbeitsentwurf bzw. eine Ideenskizze
+        ist. Verbesserungsvorschläge sind willkommen – als Beitrag in den
+        <a class="link link-primary" href="https://github.com/roessing/dorfentwicklung/discussions">Diskussionen</a>
+        oder als Pull-Request zum
+        <a class="link link-primary" href="https://github.com/roessing/dorfentwicklung">Quellcode</a>.
+      </p>
+    </div>
+
+    <div class="mx-auto max-w-3xl space-y-4">
+      {
+        faqs.map((faq, i) => (
+          <div class="collapse collapse-arrow border border-base-300 bg-base-100">
+            <input type="radio" name="faq-accordion" checked={i === 0} />
+            <div class="collapse-title text-lg font-semibold">{faq.q}</div>
+            <div class="collapse-content space-y-3 text-base-content/80">
+              <p>{faq.a}</p>
+              {faq.list && (
+                <ul class="list-disc space-y-1 pl-6">
+                  {faq.list.map((item) => (
+                    <li>{item}</li>
+                  ))}
+                </ul>
+              )}
+              {faq.after && <p>{faq.after}</p>}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,230 @@
+---
+import Layout from '@levino/shipyard-base/layouts/Page.astro'
+import { getCollection } from 'astro:content'
+import Hero from '../components/Hero.astro'
+import SectionHeading from '../components/SectionHeading.astro'
+
+const metadata = {
+  title: 'Startseite',
+  description:
+    'Die Dorfentwicklungsgesellschaft Rössing (DEG) entwickelt zukunftsorientierte, nachhaltige Immobilienprojekte und stärkt die Interessen Rössings. Unser Dorf hat Zukunft.',
+}
+
+const news = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+
+const dateFormatter = new Intl.DateTimeFormat('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+
+const aufgaben = [
+  {
+    icon: '🏘️',
+    title: 'Immobilienentwicklung',
+    text: 'Zukunftsorientierte, nachhaltige Immobilienprojekte in Rössing – seniorengerechtes Wohnen und Räume für ortsbildförderndes Gewerbe. Über die Gemeinde soll auch das Vorkaufsrecht für geeignete Grundstücke genutzt werden.',
+  },
+  {
+    icon: '📣',
+    title: 'Lobbyarbeit',
+    text: 'In Gemeinde, Landkreis und darüber hinaus die Interessen Rössings vertreten und durchsetzen – beständig und unabhängig von wechselnden politischen Mehrheiten.',
+  },
+  {
+    icon: '🌱',
+    title: 'Nachhaltiger Betrieb',
+    text: 'Die DEG ist keine mildtätige Organisation: Investitionen erwirtschaften über die Zeit eine Rendite, die die Aktivitäten tragfähig finanziert. Überschüsse gehen vorrangig in die Erhöhung des Eigenkapitals.',
+  },
+]
+
+const meilensteine = [
+  { jahr: '2025', text: 'Gründung mit 50 Genoss:innen' },
+  { jahr: '2026', text: 'Kauf des Karusellplatzes' },
+  { jahr: '2029', text: 'Wohnkomplex „Rittergut III" mit Coworking-Space' },
+  { jahr: '2045', text: 'Meilenstein: 200 Genoss:innen' },
+]
+---
+
+<Layout {...metadata}>
+  <div class="space-y-24 py-10 sm:py-14">
+    {/* HERO */}
+    <Hero
+      eyebrow="Unser Dorf hat Zukunft"
+      title="Dorfentwicklungsgesellschaft Rössing"
+      subtitle="Eine Gesellschaft von engagierten Bürger:innen, die Rössing aktiv gestaltet: nachhaltige Immobilienprojekte, ein lebenswertes Ortsbild und eine starke Stimme fürs Dorf."
+    >
+      <a slot="actions" href="/docs/vision/digitaler-dorfschluessel" class="btn btn-lg bg-primary-content text-primary hover:bg-primary-content/90 border-0">
+        Unsere Vision
+      </a>
+      <a slot="actions" href="/faq" class="btn btn-lg btn-outline border-primary-content/40 text-primary-content hover:bg-primary-content/10 hover:border-primary-content/60">
+        Häufige Fragen
+      </a>
+    </Hero>
+
+    {/* HINWEIS Arbeitsentwurf */}
+    <div role="alert" class="alert border border-info/30 bg-info/10 text-base-content">
+      <span class="text-2xl">💡</span>
+      <div>
+        <h3 class="font-semibold">Arbeitsentwurf &amp; Ideenskizze</h3>
+        <p class="text-sm text-base-content/70">
+          Diese Homepage wird gerade als Konzept ausgearbeitet. Es gibt bislang
+          keine Gesellschaft im rechtlichen Sinne. Alle sind aufgerufen,
+          Verbesserungsvorschläge zu machen – als Beitrag in den
+          <a class="link link-primary" href="https://github.com/roessing/dorfentwicklung/discussions">Diskussionen</a>
+          oder als Pull-Request zum
+          <a class="link link-primary" href="https://github.com/roessing/dorfentwicklung">Quellcode</a>.
+        </p>
+      </div>
+    </div>
+
+    {/* MISSION */}
+    <section>
+      <SectionHeading eyebrow="Worum es geht" title="Rössing aktiv gestalten – wirtschaftlich tragfähig, gemeinwohlorientiert">
+        <p>
+          Ähnlich wie eine Wohnungsbaugenossenschaft verfolgt die DEG nicht die
+          Gewinnmaximierung Einzelner, sondern einen nachhaltigen
+          wirtschaftlichen Betrieb im Dienst des Dorfes. Sie soll ein
+          beständiges Gegengewicht zu den ständig wechselnden Mehrheiten in
+          politischen Gremien bilden.
+        </p>
+      </SectionHeading>
+
+      <div class="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          aufgaben.map((a) => (
+            <div class="card border border-base-300 bg-base-100 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+              <div class="card-body">
+                <div class="text-4xl">{a.icon}</div>
+                <h3 class="card-title mt-2">{a.title}</h3>
+                <p class="text-base-content/70">{a.text}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* 25 JAHRE DEG */}
+    <section class="overflow-hidden rounded-3xl bg-base-200 px-6 py-14 sm:px-12">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div>
+          <SectionHeading eyebrow="Ein Blick nach vorn" title="25 Jahre DEG – ein Dorf, das blendend dasteht">
+            <p>
+              Bei der Ideenwerkstatt 2025 ist eine fiktive Jubiläumsrede für das
+              Jahr 2050 entstanden. Sie macht greifbar, was die DEG erreichen
+              will: jüngere Familien, lebendige Vereine, ein ansprechendes
+              Ortsbild und seniorengerechtes Wohnen mitten im Dorf.
+            </p>
+          </SectionHeading>
+          <a href="/docs/vision/rede-25-jahre-deg" class="btn btn-primary mt-8">
+            Die Rede lesen
+          </a>
+        </div>
+
+        <ul class="timeline timeline-vertical timeline-compact">
+          {
+            meilensteine.map((m, i) => (
+              <li>
+                {i > 0 && <hr class="bg-primary/30" />}
+                <div class="timeline-middle">
+                  <span class="badge badge-primary badge-sm" />
+                </div>
+                <div class="timeline-end mb-6 ml-2">
+                  <time class="font-mono text-sm font-bold text-primary">{m.jahr}</time>
+                  <p class="text-base-content/80">{m.text}</p>
+                </div>
+                {i < meilensteine.length - 1 && <hr class="bg-primary/30" />}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    {/* VISION DIGITALER DORFSCHLÜSSEL */}
+    <section class="grid items-center gap-10 lg:grid-cols-2">
+      <div>
+        <SectionHeading eyebrow="Digitale Vision" title="Ein Schlüssel fürs ganze Dorf">
+          <p>
+            Eine gemeinsame digitale Anmeldung für alle Rössinger:innen und ihre
+            Vereine – und darauf eine offene Werkstatt, in der das Dorf seine
+            eigenen digitalen Werkzeuge baut. In unserer Hand, ohne Konzern, ohne
+            Gebühr pro Kopf. Möglich geworden ist das erst jetzt.
+          </p>
+        </SectionHeading>
+        <a href="/docs/vision/digitaler-dorfschluessel" class="btn btn-secondary mt-8">
+          Digitaler Dorfschlüssel
+        </a>
+      </div>
+      <div class="card border border-base-300 bg-base-100 shadow-sm">
+        <div class="card-body gap-4">
+          <p class="text-base-content/80">Rössing fängt nicht bei null an. Die Bausteine liegen längst im Dorf:</p>
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">📅</span>
+            <p><span class="font-semibold">roessing.de</span> – das digitale schwarze Brett für Termine, Vereine und Wissen übers Dorf.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">🔧</span>
+            <p><span class="font-semibold">mieten.rössing.de</span> – Geräte aus dem Dorf ausleihen statt selbst kaufen.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="text-2xl">🤝</span>
+            <p><span class="font-semibold">Vereine &amp; Stiftung</span> – reichlich Tatkraft, von der Feuerwehr bis zur Bürgerstiftung.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* NEUIGKEITEN */}
+    <section>
+      <div class="flex flex-wrap items-end justify-between gap-4">
+        <SectionHeading eyebrow="Aus der Werkstatt" title="Neuigkeiten">
+          <p>Was sich rund um die DEG und die Ideenwerkstatt tut.</p>
+        </SectionHeading>
+        <a href="/neuigkeiten" class="btn btn-ghost">Alle Neuigkeiten →</a>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-2">
+        {
+          news.map((post) => (
+            <a
+              href={`/neuigkeiten/${post.id}`}
+              class="card border border-base-300 bg-base-100 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+            >
+              <div class="card-body">
+                <time class="text-sm font-medium text-primary">
+                  {dateFormatter.format(post.data.date)}
+                </time>
+                <h3 class="card-title">{post.data.title}</h3>
+                <p class="text-base-content/70">{post.data.summary}</p>
+                <span class="mt-2 text-sm text-base-content/50">von {post.data.author}</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* FINANZIERUNG / CTA */}
+    <section class="rounded-3xl bg-gradient-to-br from-secondary to-primary px-6 py-14 text-primary-content sm:px-12">
+      <div class="max-w-3xl">
+        <h2 class="text-3xl font-bold sm:text-4xl">Mitmachen &amp; mitgestalten</h2>
+        <p class="mt-4 text-lg text-primary-content/85">
+          Um ein Eigenkapital für die ersten Jahrzehnte aufzubauen, legen die
+          Gesellschafter:innen Eigenkapital ein (derzeit mindestens 25.000 Euro).
+          Stimmrechte haben nur diese Anteilseigner:innen. Du hast Fragen, Ideen
+          oder möchtest dich beteiligen?
+        </p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="/faq" class="btn btn-lg bg-primary-content text-primary hover:bg-primary-content/90 border-0">
+            Häufige Fragen
+          </a>
+          <a href="https://github.com/roessing/dorfentwicklung/discussions" class="btn btn-lg btn-outline border-primary-content/40 text-primary-content hover:bg-primary-content/10">
+            In den Diskussionen mitreden
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>

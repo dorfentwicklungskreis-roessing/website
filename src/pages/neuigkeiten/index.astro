@@ -1,0 +1,47 @@
+---
+import Layout from '@levino/shipyard-base/layouts/Page.astro'
+import { getCollection } from 'astro:content'
+import Hero from '../../components/Hero.astro'
+
+const metadata = {
+  title: 'Neuigkeiten',
+  description:
+    'Neuigkeiten und Berichte rund um die Dorfentwicklungsgesellschaft Rössing und die Ideenwerkstatt.',
+}
+
+const news = (await getCollection('news')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+)
+
+const dateFormatter = new Intl.DateTimeFormat('de-DE', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+})
+---
+
+<Layout {...metadata}>
+  <div class="space-y-12 py-10">
+    <Hero eyebrow="Aus der Werkstatt" title="Neuigkeiten" subtitle="Berichte und Notizen rund um die DEG, die Ideenwerkstatt und die Entwicklung dieser Seite." />
+
+    <div class="mx-auto max-w-3xl space-y-6">
+      {
+        news.map((post) => (
+          <a
+            href={`/neuigkeiten/${post.id}`}
+            class="card border border-base-300 bg-base-100 shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+          >
+            <div class="card-body">
+              <time class="text-sm font-medium text-primary">
+                {dateFormatter.format(post.data.date)}
+              </time>
+              <h2 class="card-title text-2xl">{post.data.title}</h2>
+              <p class="text-base-content/70">{post.data.summary}</p>
+              <span class="mt-2 text-sm text-base-content/50">von {post.data.author}</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</Layout>

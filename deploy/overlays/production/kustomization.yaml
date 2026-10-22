@@ -13,4 +13,4 @@ resources:
 images:
 - name: ghcr.io/dorfentwicklungskreis-roessing/website
   newName: ghcr.io/dorfentwicklungskreis-roessing/website
-  newTag: a6f4f54f00bd736d11c2d683f5cc6d46847348da
+  newTag: 728c099c9dee17796f9fb8c1de6b7f8a812e169a

@@ -19,6 +19,8 @@ const site = isDevServer
 // https://astro.build/config
 export default defineConfig({
   site,
+  // Astro 7 entfernt sonst Leerraum zwischen Inline-Elementen ("Wort<a>Link</a>" klebt zusammen).
+  compressHTML: true,
   integrations: [
     mdx(),
     sitemap(),

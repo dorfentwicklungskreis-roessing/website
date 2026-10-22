@@ -18,7 +18,7 @@
     "@levino/shipyard-docs": "^0.7.4",
     "@tailwindcss/typography": "^0.5.16",
     "@tailwindcss/vite": "~4.1.13",
-    "astro": "^5.14.1",
+    "astro": "^7.0.0",
     "daisyui": "^5.1.27",
     "ramda": "^0.31.3",
     "tailwindcss": "~4.1.13",
